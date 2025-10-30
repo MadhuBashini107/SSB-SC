@@ -52,8 +52,48 @@ Model Waveform
 <img width="706" height="167" alt="image" src="https://github.com/user-attachments/assets/bff0d8fd-d679-444e-af37-0b34585853c1" />
 
 Program
+```
+ac=19.4;               
+Am=9.7;              
+fc=4500;             
+fm=450;              
+fs=45000;            
+t=0:1/fs:2/fm;       
+wc=2*3.14*fc;        
+wm=2*3.14*fm;        
 
+e1=(Am*sin(wm*t));
+subplot(4,1,1);
+plot(t,e1);
+xtitle("Message Signal");
+xgrid();
+
+e2=(ac*sin(wc*t));
+subplot(4,1,2);
+plot(t,e2);
+title("Carrier signal");
+xgrid
+
+sbsc1=(Am/2.*cos(wc*t-wm*t))-(Am/2.*cos(wc*t+wm*t));
+sbsc2=(Am/2.*cos(wc*t-wm*t))+(Am/2.*cos(wc*t+wm*t));
+
+
+e3=(sbsc2)+(sbsc1);
+subplot(4,1,3);
+plot(t,e3);
+title("USB + LSB together => DSB-SC");
+xgrid
+
+e4=(sbsc2)-(sbsc1);
+subplot(4,1,4);
+plot(t,e4);
+title("USB - LSB => isolates one sideband → SSB-SC");
+xgrid;
+```
 OUTPUT WAVEFORM
+
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/2cfe82b8-a731-414c-b5c0-e2275048771c" />
+
 
 TABULATION
 
